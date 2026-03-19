@@ -1,0 +1,1037 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Naskh Arabic', 'Tajawal', sans-serif;
+    background: #03030a;
+    color: #fff;
+    line-height: 1.8;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ========== پاشبنەما ========== */
+.dark-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+    z-index: -2;
+}
+
+.flicker-light {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    z-index: -1;
+    opacity: 0;
+    animation: flicker 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes flicker {
+    0% { opacity: 0; transform: scale(0.5); }
+    25% { opacity: 1; transform: scale(1.2); }
+    50% { opacity: 0.2; transform: scale(0.8); }
+    75% { opacity: 0.9; transform: scale(1.1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+.flicker-light:nth-child(2) { animation-delay: 0s; }
+.flicker-light:nth-child(3) { animation-delay: 1.3s; }
+.flicker-light:nth-child(4) { animation-delay: 2.7s; }
+.flicker-light:nth-child(5) { animation-delay: 0.9s; }
+.flicker-light:nth-child(6) { animation-delay: 3.2s; }
+
+/* ========== مەخزەنی لای ڕاست (Box) ========== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(10px);
+    border-right: 2px solid #ffd700;
+    z-index: 2000;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,215,0,0.3);
+}
+
+.sidebar-header h3 {
+    color: #ffd700;
+    font-size: 24px;
+}
+
+.sidebar-header h3 i {
+    margin-left: 10px;
+}
+
+.sidebar-close {
+    background: transparent;
+    border: 1px solid #ffd700;
+    color: #ffd700;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sidebar-close:hover {
+    background: #ffd700;
+    color: #03030a;
+    transform: rotate(90deg);
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sidebar-item:hover {
+    background: rgba(255,215,0,0.1);
+    transform: translateX(5px);
+    border-color: #ffd700;
+}
+
+.sidebar-item i {
+    font-size: 24px;
+    color: #ffd700;
+    width: 30px;
+    text-align: center;
+}
+
+.sidebar-item span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sidebar-toggle {
+    background: linear-gradient(135deg, #ffd700, #aa6600);
+    color: #03030a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 15px;
+}
+
+.sidebar-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255,215,0,0.3);
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ========== ژمێرەری سەردانکەران ========== */
+.visitor-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(5, 5, 15, 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 40px;
+    padding: 10px 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ddd;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.visitor-counter i {
+    color: #ffd700;
+    font-size: 18px;
+}
+
+.visitor-counter span:first-of-type {
+    color: #ffd700;
+    font-size: 20px;
+    font-weight: 800;
+    min-width: 35px;
+    text-align: center;
+}
+
+.visitor-counter:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(10, 10, 25, 0.9);
+}
+
+/* ========== ناوبار ========== */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 12px 30px;
+    z-index: 1000;
+    background: rgba(5, 5, 15, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 900;
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #ffd700, #aa6600);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ========== بەشی هیرۆ ========== */
+.hero-section {
+    max-width: 1400px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.greeting {
+    font-size: 24px;
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.name {
+    font-size: 65px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #fff, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title {
+    font-size: 26px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.title span {
+    color: #ffd700;
+    font-weight: 800;
+}
+
+.bio {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    line-height: 2;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* ========== بەشی CV ========== */
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ffd700, #aa6600);
+    color: #03030a;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.cv-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+
+.profile-frame {
+    width: 350px;
+    height: 350px;
+    position: relative;
+}
+
+.profile-frame::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ffd700;
+    border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%;
+    animation: borderRotate 10s linear infinite;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffd70015, #aa660015);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes borderRotate {
+    0% { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; }
+    50% { border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%; }
+    100% { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; }
+}
+
+/* ========== بۆکسەکان ========== */
+.boxes-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.box {
+    background: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(5px);
+    border-radius: 35px;
+    padding: 30px 20px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.box-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 35px;
+    transition: all 0.3s;
+}
+
+.box:hover .box-icon {
+    transform: rotate(360deg);
+}
+
+.box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.box p {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.box .badge {
+    color: #03030a;
+    padding: 4px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+    display: inline-block;
+}
+
+.book-box {
+    border-color: rgba(180, 100, 255, 0.2);
+}
+.book-box .box-icon {
+    background: rgba(180, 100, 255, 0.1);
+    color: #b464ff;
+}
+.book-box h3 { color: #b464ff; }
+.book-box .badge { background: #b464ff; }
+
+.skill-box {
+    border-color: rgba(255, 215, 0, 0.2);
+}
+.skill-box .box-icon {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+.skill-box h3 { color: #ffd700; }
+.skill-box .badge { background: #ffd700; }
+
+.project-box {
+    border-color: rgba(100, 200, 255, 0.2);
+}
+.project-box .box-icon {
+    background: rgba(100, 200, 255, 0.1);
+    color: #64c8ff;
+}
+.project-box h3 { color: #64c8ff; }
+.project-box .badge { background: #64c8ff; }
+
+.contact-box {
+    border-color: rgba(255, 215, 0, 0.15);
+}
+.contact-box .box-icon {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+.contact-box h3 { color: #ffd700; }
+.contact-box .badge { background: #ffd700; }
+
+/* ========== سۆشیال میدیا ========== */
+.social-section {
+    max-width: 1400px;
+    margin: 20px auto 60px;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 40px;
+    text-align: center;
+}
+
+.social-title {
+    font-size: 32px;
+    color: #ffd700;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    overflow: hidden;
+}
+
+.social-link i {
+    font-size: 40px;
+    transition: all 0.3s;
+}
+
+.social-name {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    color: #fff;
+}
+
+.social-link:hover {
+    transform: translateY(-10px);
+    border-color: #ffd700;
+}
+
+.social-link:hover .social-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tiktok { background: rgba(0,0,0,0.3); color: #ff0050; }
+.tiktok:hover { background: #ff0050; box-shadow: 0 0 30px #ff0050; }
+.tiktok:hover i, .tiktok:hover .social-name { color: #fff; }
+
+.instagram { background: rgba(0,0,0,0.3); color: #e4405f; }
+.instagram:hover { background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5); box-shadow: 0 0 30px #d62976; }
+.instagram:hover i, .instagram:hover .social-name { color: #fff; }
+
+.facebook { background: rgba(0,0,0,0.3); color: #1877f2; }
+.facebook:hover { background: #1877f2; box-shadow: 0 0 30px #1877f2; }
+.facebook:hover i, .facebook:hover .social-name { color: #fff; }
+
+.telegram { background: rgba(0,0,0,0.3); color: #0088cc; }
+.telegram:hover { background: #0088cc; box-shadow: 0 0 30px #0088cc; }
+.telegram:hover i, .telegram:hover .social-name { color: #fff; }
+
+.youtube { background: rgba(0,0,0,0.3); color: #ff0000; }
+.youtube:hover { background: #ff0000; box-shadow: 0 0 30px #ff0000; }
+.youtube:hover i, .youtube:hover .social-name { color: #fff; }
+
+/* ========== بەشی وێنە (ڕیزێکی جوڵاو) ========== */
+.gallery-section {
+    max-width: 1400px;
+    margin: 40px auto 80px;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.gallery-title {
+    font-size: 32px;
+    color: #ffd700;
+    margin-bottom: 30px;
+    font-weight: 800;
+    border-bottom: 1px solid rgba(255,215,0,0.3);
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.gallery-row {
+    display: flex;
+    gap: 20px;
+    animation: scroll 20s linear infinite;
+    width: fit-content;
+    padding: 10px 0;
+}
+
+.gallery-item {
+    flex: 0 0 200px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 30px rgba(255,215,0,0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 5 - 20px * 5)); }
+}
+
+/* ========== دیزاینی نوێی بەشی بەهرە ========== */
+.skill-category {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255,215,0,0.1);
+}
+
+.category-title {
+    color: #ffd700;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-right: 10px;
+    border-right: 3px solid #ffd700;
+}
+
+.category-title i {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.skills-grid-new {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.skill-card {
+    background: linear-gradient(145deg, #1a1a2a, #0f0f1a);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    padding: 15px 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+.skill-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: rotate(360deg);
+    background: #ffd700;
+    color: #03030a;
+}
+
+.skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    display: block;
+    line-height: 1.4;
+}
+
+/* ========== مۆدالەکان ========== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #111120;
+    border-radius: 35px;
+    padding: 35px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 2px solid #ffd700;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ffd700;
+    color: #03030a;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: none;
+}
+
+.modal-close:hover { transform: scale(1.1); }
+
+.contact-modal-content {
+    background: #111120;
+    border-radius: 30px;
+    padding: 40px;
+    max-width: 650px;
+    width: 92%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid #ffd700;
+    position: relative;
+}
+
+.contact-modal-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #ffd700;
+    color: #03030a;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 900;
+    transition: all 0.2s;
+    border: none;
+}
+
+.contact-modal-close:hover { transform: scale(1.1); }
+
+.contact-modal-title {
+    color: #ffd700;
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-form-group {
+    margin-bottom: 18px;
+}
+
+.contact-form-group input,
+.contact-form-group select,
+.contact-form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic','Tajawal',sans-serif;
+    outline: none;
+    transition: all 0.3s;
+    text-align: right;
+}
+
+.contact-form-group input:focus,
+.contact-form-group select:focus,
+.contact-form-group textarea:focus {
+    border-color: rgba(255, 215, 0, 0.4);
+    background: rgba(255,255,255,0.08);
+}
+
+.contact-form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.contact-submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffd700, #aa6600);
+    border: none;
+    border-radius: 15px;
+    color: #03030a;
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: 'Noto Naskh Arabic','Tajawal',sans-serif;
+    transition: all 0.3s;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contact-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+}
+
+/* ========== ناوەڕۆکی مۆدالەکان ========== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+    gap: 10px;
+}
+
+.skill-item {
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    padding: 15px 5px;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+    transition: all 0.3s;
+}
+
+.skill-item:hover {
+    border-color: #ffd700;
+    background: rgba(255,215,0,0.05);
+}
+
+.skill-item i {
+    font-size: 25px;
+    color: #ffd700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.skill-item span {
+    font-size: 13px;
+    display: block;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.project-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,215,0,0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    border-color: #ffd700;
+}
+
+.project-image {
+    height: 140px;
+    background: linear-gradient(135deg, #ffd70010, #aa660010);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-info {
+    padding: 15px;
+}
+
+.project-info h4 {
+    color: #ffd700;
+    margin-bottom: 3px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.project-info p {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+}
+
+.project-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #64c8ff, #1e90ff);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin: 5px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.project-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100,200,255,0.4);
+}
+
+.book-item {
+    background: rgba(255,255,255,0.03);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.1);
+    transition: all 0.3s;
+    margin-bottom: 10px;
+}
+
+.book-item:hover {
+    border-color: #b464ff;
+    background: rgba(180, 100, 255, 0.1);
+}
+
+.book-item i {
+    font-size: 35px;
+    color: #b464ff;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.book-item span {
+    font-size: 18px;
+    display: block;
+    font-weight: 600;
+    color: #b464ff;
+}
+
+.book-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #b464ff, #8a2be2);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: all 0.3s;
+}
+
+.book-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(180,100,255,0.4);
+}
+
+/* ========== دیزاینی وەڵامدەر ========== */
+@media (max-width: 1024px) {
+    .hero-section { grid-template-columns: 1fr; text-align: center; }
+    .boxes-container { grid-template-columns: repeat(2,1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
+    .gallery-item { flex: 0 0 180px; height: 180px; }
+    .skills-grid-new { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-180px * 5 - 20px * 5)); }
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-item { flex: 0 0 150px; height: 150px; }
+    .sidebar { width: 250px; }
+    .sidebar-toggle span { display: none; }
+    .sidebar-toggle i { margin: 0; }
+    .skills-grid-new { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    .skill-icon { width: 40px; height: 40px; font-size: 20px; }
+    .skill-name { font-size: 12px; }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-150px * 5 - 20px * 5)); }
+    }
+}
+
+@media (max-width: 600px) {
+    .boxes-container { grid-template-columns: 1fr; }
+    .name { font-size: 45px; }
+    .profile-frame { width: 280px; height: 280px; }
+    .visitor-counter { bottom: 10px; right: 10px; padding: 8px 15px; font-size: 14px; }
+    .social-links { gap: 15px; }
+    .social-link { width: 70px; height: 70px; }
+    .social-link i { font-size: 28px; }
+    .social-name { font-size: 10px; }
+    .gallery-item { flex: 0 0 120px; height: 120px; }
+    .skills-grid-new { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px; }
+    .skill-card { padding: 12px 5px; }
+    .skill-icon { width: 35px; height: 35px; font-size: 18px; margin-bottom: 8px; }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-120px * 5 - 20px * 5)); }
+    }
+}

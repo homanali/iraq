@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homan Ali | ئەندازیاری کارەبا و کۆمپیوتەر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- پاشبنەمای تاریک -->
+    <div class="dark-bg"></div>
+    
+    <!-- ڕووناکی دەقەقە -->
+    <div class="flicker-light" style="top: 20%; left: 15%;"></div>
+    <div class="flicker-light" style="top: 60%; left: 80%;"></div>
+    <div class="flicker-light" style="top: 30%; left: 70%;"></div>
+    <div class="flicker-light" style="top: 80%; left: 25%;"></div>
+    <div class="flicker-light" style="top: 40%; left: 40%;"></div>
+
+    <!-- مەخزەنی لای ڕاست (Box) -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-boxes"></i> Box</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-item" onclick="openModal('books')">
+                <i class="fas fa-book"></i>
+                <span>پەرتووک</span>
+            </div>
+            <div class="sidebar-item" onclick="openModal('skills')">
+                <i class="fas fa-cogs"></i>
+                <span>بەهرە</span>
+            </div>
+            <div class="sidebar-item" onclick="openModal('projects')">
+                <i class="fas fa-images"></i>
+                <span>پیشە</span>
+            </div>
+            <div class="sidebar-item" onclick="openContactModal()">
+                <i class="fas fa-envelope"></i>
+                <span>پەیوەندی</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ناوبار -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                Homan Ali
+            </div>
+            <div class="nav-buttons">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-boxes"></i> <span>Box</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ژمێرەری سەردانکەران -->
+    <div class="visitor-counter">
+        <i class="fas fa-eye"></i>
+        <span id="visitor-count">٠</span>
+        <span>کەس سەردانیان کردووە</span>
+    </div>
+
+    <!-- بۆشایی بۆ ئەوەی وێبسایتەکە زۆر بەرەو سەرەوە نەڕوات -->
+    <div style="height: 80px;"></div>
+
+    <!-- بەشی هیرۆ -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="greeting"><i class="fas fa-hand-peace"></i> سڵاو، من</div>
+            <h1 class="name">Homan Ali</h1>
+            <div class="title"><span>ئەندازیاری کارەبا و کۆمپیوتەر</span></div>
+            <p class="bio">
+                خەڵکی ناحیەی شێلادزەم، خاوەنی بڕوانامەی بەکالۆریۆس لە زانكۆیا دوهۆك 
+                پشکی ئەندازیاری کارەبا و کۆمپیوتەر. شارەزاییم هەیە لە بواری سیستەمی کارەبایی و پرۆگرامسازیدا.
+            </p>
+            
+            <!-- بەشی CV -->
+            <a href="#" id="cv-link" class="cv-button" target="_blank">
+                <i class="fas fa-download"></i> دابەزاندنی CV
+            </a>
+        </div>
+        
+        <!-- بەشی وێنە -->
+        <div class="hero-image">
+            <div class="profile-frame">
+                <div class="profile-img">
+                    <img src="homan.png" alt="وێنەی من" class="profile-pic">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بۆکسەکان -->
+    <div class="boxes-container">
+        <!-- پەرتووک -->
+        <div class="box book-box" onclick="openModal('books')">
+            <div class="box-icon"><i class="fas fa-book"></i></div>
+            <h3>پەرتووک</h3>
+            <p>پەرتووکە خوێندراوەکان</p>
+            <span class="badge">B00K</span>
+        </div>
+
+        <!-- بەهرە -->
+        <div class="box skill-box" onclick="openModal('skills')">
+            <div class="box-icon"><i class="fas fa-cogs"></i></div>
+            <h3>بەهرە</h3>
+            <p>٣٠+ توانا لە بوارە جیاوازەکان</p>
+            <span class="badge">PR0GRAM</span>
+        </div>
+
+        <!-- پرۆژەکانم -->
+        <div class="box project-box" onclick="openModal('projects')">
+            <div class="box-icon"><i class="fas fa-images"></i></div>
+            <h3>پیشە</h3>
+            <p>نمونە کارێ من</p>
+            <span class="badge">PR0JECT</span>
+        </div>
+
+        <!-- پەیوەندی -->
+        <div class="box contact-box" onclick="openContactModal()">
+            <div class="box-icon"><i class="fas fa-envelope"></i></div>
+            <h3>پەیوەندی</h3>
+            <p>بۆ پرسیار و ڕاوێژ</p>
+            <span class="badge">F0RM</span>
+        </div>
+    </div>
+
+    <!-- بەشی سۆشیال میدیا -->
+    <div class="social-section">
+        <h2 class="social-title">سۆشیال میدیا</h2>
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@30.13.10?_r=1&_t=ZS-94TZPEjkTLN" target="_blank" class="social-link tiktok"><i class="fab fa-tiktok"></i><span class="social-name">TikTok</span></a>
+            <a href="https://www.instagram.com/homan_alii?igsh=MXR5NTQzZTFxemRyOQ%3D%3D&utm_source=qr" target="_blank" class="social-link instagram"><i class="fab fa-instagram"></i><span class="social-name">Instagram</span></a>
+            <a href="https://www.facebook.com/homan.ali.587" target="_blank" class="social-link facebook"><i class="fab fa-facebook-f"></i><span class="social-name">Facebook</span></a>
+            <a href="https://t.me/contact/1772842022:YqoRcD_1nns2O4MU" target="_blank" class="social-link telegram"><i class="fab fa-telegram-plane"></i><span class="social-name">Telegram</span></a>
+            <a href="https://www.youtube.com/@BadiiNan" target="_blank" class="social-link youtube"><i class="fab fa-youtube"></i><span class="social-name">YouTube</span></a>
+        </div>
+    </div>
+
+    <!-- ========== بەشی وێنە (ڕیزێکی جوڵاو) ========== -->
+    <div class="gallery-section">
+        <h2 class="gallery-title">وێنە</h2>
+        <div class="gallery-row">
+            <div class="gallery-item">
+                <img src="1.jpg" alt="وێنەی ١" onerror="this.src='https://via.placeholder.com/300x300/1a1a2a/ffd700?text=وێنە+١'">
+            </div>
+            <div class="gallery-item">
+                <img src="2.jpg" alt="وێنەی ٢" onerror="this.src='https://via.placeholder.com/300x300/1a1a2a/ffd700?text=وێنە+٢'">
+            </div>
+            <div class="gallery-item">
+                <img src="3.jpg" alt="وێنەی ٣" onerror="this.src='https://via.placeholder.com/300x300/1a1a2a/ffd700?text=وێنە+٣'">
+            </div>
+            <div class="gallery-item">
+                <img src="4.jpg" alt="وێنەی ٤" onerror="this.src='https://via.placeholder.com/300x300/1a1a2a/ffd700?text=وێنە+٤'">
+            </div>
+            <div class="gallery-item">
+                <img src="5.jpg" alt="وێنەی ٥" onerror="this.src='https://via.placeholder.com/300x300/1a1a2a/ffd700?text=وێنە+٥'">
+            </div>
+        </div>
+    </div>
+
+    <!-- مۆدالەکان -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal">
+        <div class="contact-modal-content">
+            <button class="contact-modal-close" onclick="closeContactModal()">✕</button>
+            <h2 class="contact-modal-title">پەیوەندی بکە</h2>
+            <form id="contactForm">
+                <div class="contact-form-group">
+                    <input type="text" id="name" placeholder="ناوی تەواو" required>
+                </div>
+                <div class="contact-form-group">
+                    <input type="email" id="email" placeholder="ئیمەیڵ" required>
+                </div>
+                <div class="contact-form-group">
+                    <select id="subject" required>
+                        <option value="">بوارەکەت دیاری بکە</option>
+                        <option value="Machine Learning / AI">Machine Learning / AI</option>
+                        <option value="کارەبا و ئۆتۆمەیشن">کارەبا و ئۆتۆمەیشن</option>
+                        <option value="پرۆگرامسازی">پرۆگرامسازی</option>
+                        <option value="Arduino & PLC">Arduino & PLC</option>
+                        <option value="هەر پرسیارێک">هەر پرسیارێک</option>
+                    </select>
+                </div>
+                <div class="contact-form-group">
+                    <textarea id="message" placeholder="پەیامەکەت" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">
+                    <i class="fas fa-paper-plane"></i> ناردنی پەیام
+                </button>
+            </form>
+            <p id="form-feedback" style="text-align: center; margin-top: 15px; color: #ffd700; display: none;"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
